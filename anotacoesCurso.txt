@@ -1,0 +1,68 @@
+*Laravel 9*
+*Utilizando 'Tailwind na parte do frond-end'*
+
+composer create-project laravel/laravel myapp
+
+php artisan make:controller IndexController
+
+php artisan make:controller ProductController
+
+php artisan make:controller AdminProductController
+
+php artisan make:model Product --migration (cria a model e a migration juntos)
+
+php artisan migrate
+
+php artisan make:factory ProductFactory
+
+editando a seeders
+
+php artisan migrate:fresh --seed
+
+php artisan make:seeder ProductSeeder (as configurações que ficaram no 'DatabaseSeeder', mover para 'ProductSeeder')
+
+após fazer a alteração, chamar o 'ProductSeeder' no 'DatabaseSeeder'.
+
+php artisan migrate:fresh --seed
+
+php artisan make:request ProductStoreRequest
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+para aparecer as imagens no formulário foi feita alteração no .env / APP_URL=http://localhost:8000
+
+criando link simbólico: >>> php artisan Storage:link <<<
+
++ adicionar no <img> do furmulario um src conforme o códio abaixo
+src="{{ \Illuminate\Support\Facades\Storage::url($product->cover) }}"
+
+php artisan make:request ProductStoreRequest.php
+
+----------------------------------------------------------------------------------------------------------------------------
+
+{{ old('name' ,$product->name) }}: está no value do <input> da pagina de adicionar produto, 
+ao clicar no botão editar registro, apagar as informações e clicar em salvar,
+estava oltando as informações que estavam ja salvas novamente para os campos.
+Então vou atribuir este 'old()' para pegar o valor antigo.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+*Trabalhando com imagens*
+
+Adicionar no form junto com o método e a action o seguinte comando: enctype="multipart/form-data"
+
+----------------------------------------------------------------------------------------------------------------------------
+
+use Illuminate\Support\Str;
+use Redirect;
+use Illuminate\Support\Facades\Storage;
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+PAREI EM projeto aula 08 (06:50)
